@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,5 +14,10 @@ public class Cube : MonoBehaviour
         Material material = new Material(mr.sharedMaterial);
         material.color = color;
         mr.material = material;
+    }
+
+    internal void Move(InputReceiver.Direction right)
+    {
+        throw new NotImplementedException();
     }
 }
