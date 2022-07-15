@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : MonoBehaviour
+public class Face : MonoBehaviour
 {
-    public Color color;
-    public int diceId;
+    public int eyes = 1;
+    public Texture displayTexture;
     // Start is called before the first frame update
     void Start()
     {
         MeshRenderer mr = GetComponent<MeshRenderer>();
         Material material = new Material(mr.sharedMaterial);
-        material.color = color;
+        material.mainTexture = displayTexture;
         mr.material = material;
     }
 }
