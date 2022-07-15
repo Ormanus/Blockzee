@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,10 @@ public class Cube : MonoBehaviour
                 maxHeight = face.transform.position.y;
             }
         }
-        return eyes;
+        return eyes; 
+    }
+    internal void Move(CubeController.Direction right)
+    {
+        throw new NotImplementedException();
     }
 }
