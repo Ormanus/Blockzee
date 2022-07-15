@@ -16,7 +16,7 @@ public class Cube : MonoBehaviour
         mr.material = material;
     }
 
-    internal void Move(InputReceiver.Direction right)
+    internal void Move(CubeController.Direction right)
     {
         throw new NotImplementedException();
     }

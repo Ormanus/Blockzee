@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static bool CubeAnimating = false;
+    public static bool SceneTransition = false;
+
+    public enum Direction
     {
-        
+        Right,
+        Up,
+        Left,
+        Down
     }
 
-    // Update is called once per frame
-    void Update()
+    public Cube[] Cubes;
+
+    Cube Selected;
+
+    private void Start()
     {
-        
+        if (Cubes.Length > 0)
+            Selected = Cubes[0];
+        else
+        {
+            Debug.LogError("No cubes in the list!");
+        }
+    }
+
+    bool AllowInput
+    {
+        get { return !CubeAnimating && !SceneTransition; }
+    }
+
+    public void Move(Direction direction)
+    {
+        if (AllowInput)
+            Selected.Move(direction);
     }
 }
