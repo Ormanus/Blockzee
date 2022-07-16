@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Cube : Block
 {
-    public Vector3Int Position { get; private set; }
     public Color color;
     public int diceId;
     public const float animationDuration = 0.2f;
