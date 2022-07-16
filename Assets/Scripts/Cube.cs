@@ -7,7 +7,7 @@ public class Cube : Block
 {
     public Color color;
     public int diceId;
-    public const float animationDuration = 0.2f;
+    public const float animationDuration = 0.125f;
     public const float victoryDuration = 0.25f;
 
     Vector3 originalPosition;

@@ -18,6 +18,14 @@ public class FadeController : MonoBehaviour
 
     string targetScene;
 
+    Image image;
+
+    private void Awake()
+    {
+        image = GetComponent<Image>();
+        image.color = new Color(0, 0, 0, 1f);
+    }
+
     public void EndFade(Object scene)
     {
         endFading = true;
@@ -32,7 +40,7 @@ public class FadeController : MonoBehaviour
         if (endFading)
         {
             float phase = (Time.time - endFadeStartTime) / fadeDuration;
-            GetComponent<Image>().color = new Color(0, 0, 0, phase);
+            image.color = new Color(0, 0, 0, phase);
             if (phase >= 1)
             {
                 SceneManager.LoadScene(targetScene);
@@ -41,7 +49,7 @@ public class FadeController : MonoBehaviour
         else
         {
             float phase = Mathf.Max(0, 1 - Time.timeSinceLevelLoad / fadeDuration);
-            GetComponent<Image>().color = new Color(0, 0, 0, phase);
+            image.color = new Color(0, 0, 0, phase);
         }
     }
 }
