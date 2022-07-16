@@ -140,6 +140,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f5aecc56-002c-4a4d-9672-95ee6781c616
     m_ActionName: Cube/CubeSelect[/Keyboard/q,/Keyboard/e,/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1215557409350593970}
+        m_TargetAssemblyTypeName: InputReceiver, Assembly-CSharp
+        m_MethodName: CubeSelectnumber
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 27dcc4ae-e0ee-496c-ba18-05b8dbb2d629
+    m_ActionName: Cube/CubeSelectNumber[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4,/Keyboard/5]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Cube
