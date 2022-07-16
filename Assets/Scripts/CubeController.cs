@@ -5,6 +5,7 @@ using UnityEngine;
 public class CubeController : MonoBehaviour
 {
     public static bool CubeAnimating = false;
+    public static bool BlockAnimating = false;
     public static bool SceneTransition = false;
 
     public enum Direction
@@ -31,7 +32,7 @@ public class CubeController : MonoBehaviour
 
     bool AllowInput
     {
-        get { return !CubeAnimating && !SceneTransition; }
+        get { return !CubeAnimating && !SceneTransition && !BlockAnimating; }
     }
 
     public void Move(Direction direction)

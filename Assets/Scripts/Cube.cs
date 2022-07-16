@@ -5,15 +5,6 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    public enum CubeState
-    {
-        Idle,
-        Moving
-    }
-
-    [HideInInspector]
-    public CubeState State { get; private set; }
-
     public Color color;
     public int diceId;
     public const float animationDuration = 0.2f;
@@ -26,10 +17,7 @@ public class Cube : MonoBehaviour
 
     float animationStartTime;
 
-    public Cube()
-    {
-        State = CubeState.Idle;
-    }
+    bool animating = false;
 
     // Start is called before the first frame update
     void Start()
@@ -60,11 +48,14 @@ public class Cube : MonoBehaviour
 
     void MoveCube()
     {
-        if (State == CubeState.Moving)
+        if (animating)
         {
             float phase = (Time.time - animationStartTime) / animationDuration;
             if (phase >= 1)
-                State = CubeState.Idle;
+            {
+                animating = false;
+                CubeController.CubeAnimating = false;
+            }
 
             phase = Math.Min(phase, 1);
 
@@ -81,10 +72,8 @@ public class Cube : MonoBehaviour
 
     internal void Move(CubeController.Direction direction)
     {
-        if (State != CubeState.Idle)
-            return;
-
-        State = CubeState.Moving;
+        animating = true;
+        CubeController.CubeAnimating = true;
 
         animationStartTime = Time.time;
 
