@@ -47,7 +47,7 @@ public class CubeController : MonoBehaviour
         }
     }
 
-    public Vector3Int NextPosition(Vector3Int position, Direction direction)
+    public static Vector3Int NextPosition(Vector3Int position, Direction direction)
     {
         return direction switch
         {
