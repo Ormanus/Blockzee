@@ -15,16 +15,21 @@ public class Level : MonoBehaviour
     {
         Block[] sceneBlocks = FindObjectsOfType<Block>();
         List<Block> levelBlocks = new();
+        List<BlockFinish> levelFinishBlocks = new();
 
         foreach (Block block in sceneBlocks)
         {
             if (block.GetType() != typeof(Cube))
                 levelBlocks.Add(block);
+
+            if (block.GetType() == typeof(BlockFinish))
+                levelFinishBlocks.Add((BlockFinish)block);
         }
 
         blocks = levelBlocks.ToArray();
-        Debug.Log("Blocks in level: " + blocks.Length);
+        finishBlocks = levelFinishBlocks.ToArray();
     }
 
     public Block[] blocks;
+    public BlockFinish[] finishBlocks;
 }

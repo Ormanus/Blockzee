@@ -23,7 +23,7 @@ public class Cube : Block
     const float Gravity = 20;
     readonly Color selectionColor = new Color(1.0f, 1.0f, 0.5f);
 
-    Block blockBelow;
+    public Block blockBelow;
 
 
     Material material;
@@ -134,7 +134,7 @@ public class Cube : Block
         if (CubeController.Instance.Selected == this)
         {
             float phase = 0.5f + Mathf.Sin(Time.time * Mathf.PI) / 2;
-            material.color = Color.Lerp(color, selectionColor, phase / 2);
+            material.color = Color.Lerp(color, selectionColor, 0.25f + phase * 0.5f);
         }
         else
         {
