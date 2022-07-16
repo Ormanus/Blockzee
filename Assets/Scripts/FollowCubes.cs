@@ -8,32 +8,37 @@ public class FollowCubes : MonoBehaviour
     const float CameraSpeed = 10;
     void UpdateTargetPosition()
     {
-        if (CubeController.Winning)
-            return;
+
 
         float minX = 0, maxX = 0, minY = 0, maxY = 0, minZ = 0, maxZ = 0;
         bool firstCubeChecked = false;
 
         foreach (Cube cube in CubeController.Instance.Cubes)
         {
+            Vector3 pos = cube.transform.position;
+            if (CubeController.Winning || CubeController.SceneTransition)
+            {
+                pos = cube.Position;
+            }
+
             if (!firstCubeChecked)
             {
                 firstCubeChecked = true;
-                minX = cube.transform.position.x;
-                maxX = cube.transform.position.x;
-                minY = cube.transform.position.y;
-                maxY = cube.transform.position.y;
-                minZ = cube.transform.position.z;
-                maxZ = cube.transform.position.z;
+                minX = pos.x;
+                maxX = pos.x;
+                minY = pos.y;
+                maxY = pos.y;
+                minZ = pos.z;
+                maxZ = pos.z;
             }
             else
             {
-                minX = Mathf.Min(minX, cube.transform.position.x);
-                maxX = Mathf.Max(maxX, cube.transform.position.x);
-                minY = Mathf.Min(minY, cube.transform.position.y);
-                maxY = Mathf.Max(maxY, cube.transform.position.y);
-                minZ = Mathf.Min(minZ, cube.transform.position.z);
-                maxZ = Mathf.Max(maxZ, cube.transform.position.z);
+                minX = Mathf.Min(minX, pos.x);
+                maxX = Mathf.Max(maxX, pos.x);
+                minY = Mathf.Min(minY, pos.y);
+                maxY = Mathf.Max(maxY, pos.y);
+                minZ = Mathf.Min(minZ, pos.z);
+                maxZ = Mathf.Max(maxZ, pos.z);
             }
         }
         float centerX = (minX + maxX) / 2;

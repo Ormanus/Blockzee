@@ -30,6 +30,10 @@ public class Level : MonoBehaviour
         finishBlocks = levelFinishBlocks.ToArray();
     }
 
+    [HideInInspector]
     public Block[] blocks;
+    [HideInInspector]
     public BlockFinish[] finishBlocks;
+
+    public Object NextLevel;
 }

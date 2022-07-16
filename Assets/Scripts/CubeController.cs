@@ -30,6 +30,10 @@ public class CubeController : MonoBehaviour
 
     private void Awake()
     {
+        CubeAnimating = false;
+        BlockAnimating = false;
+        SceneTransition = true;
+        Winning = false;
         Cubes = FindObjectsOfType<Cube>();
         if (Cubes.Length > 0)
             Selected = Cubes[0];
@@ -43,7 +47,7 @@ public class CubeController : MonoBehaviour
 
     bool AllowInput
     {
-        get { return !CubeAnimating && !SceneTransition && !BlockAnimating; }
+        get { return !CubeAnimating && !SceneTransition && !BlockAnimating && !Winning; }
     }
 
     public void Move(Direction direction)
@@ -81,6 +85,12 @@ public class CubeController : MonoBehaviour
         };
     }
 
+    IEnumerator PrepareSceneTransition()
+    {
+        yield return new WaitForSeconds(2);
+        FadeController.Instance.EndFade(Level.Instance.NextLevel);
+    }
+
     public void Win()
     {
         Winning = true;
@@ -90,6 +100,8 @@ public class CubeController : MonoBehaviour
         {
             cube.Win(id++);
         }
+
+        StartCoroutine(PrepareSceneTransition());
     }
 
     public Block GetBlockAtPosition(Vector3Int position)

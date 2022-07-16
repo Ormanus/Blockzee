@@ -30,11 +30,9 @@ public class Cube : Block
     int victoryId = 0;
 
     Material material;
-    bool victoryAnimationDone = false;
 
     protected override void OnStart()
     {
-        ChangeBlock();
         MeshRenderer mr = GetComponent<MeshRenderer>();
         material = new Material(mr.sharedMaterial);
         material.color = color;
@@ -153,8 +151,6 @@ public class Cube : Block
     }
     void WinAnimation()
     {
-        if (victoryAnimationDone)
-            return;
 
         float phase = (Time.time - animationStartTime - victoryDuration * victoryId / 4f);
         if (phase < 1)
@@ -169,15 +165,34 @@ public class Cube : Block
         }
         else
         {
-            transform.position = Position;
+            transform.position = Vector3.up * Gravity * (phase - 1) * (phase - 1) + Position;
             material.color = winColor1; 
-            victoryAnimationDone = true;
+        }
+    }
+
+    void TransitionAnimation()
+    {
+        float h = (1 - Time.timeSinceLevelLoad) * 20;
+        if (h < 0)
+        {
+            transform.position = Position;
+            CubeController.SceneTransition = false;
+            AudioManager.PlayClip(AudioManager.Instance.FallSound);
+            ChangeBlock();
+        }
+        else
+        {
+            transform.position = Position + Vector3.up * h;
         }
     }
 
     private void Update()
     {
-        if (CubeController.Winning)
+        if (CubeController.SceneTransition)
+        {
+            TransitionAnimation();
+        }
+        else if (CubeController.Winning)
         {
             WinAnimation();
         }
