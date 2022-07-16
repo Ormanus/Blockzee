@@ -1,36 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputReceiver : MonoBehaviour
 {
     public CubeController cubeController;
 
-    private void Update()
+    public void OnMovementInput(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        var value = context.ReadValue<Vector2>();
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (value != null)
         {
-            cubeController.Move(CubeController.Direction.Right);
+            if (value.x > 0.1f)
+            {
+                cubeController.Move(CubeController.Direction.Right);
+            }
+            if (value.x < -0.1f)
+            {
+                cubeController.Move(CubeController.Direction.Left);
+            }
+            if (value.y > 0.1f)
+            {
+                cubeController.Move(CubeController.Direction.Up);
+            }
+            if (value.y < -0.1f)
+            {
+                cubeController.Move(CubeController.Direction.Down);
+            }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.W))
+    public void CubeSelector(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
         {
-            cubeController.Move(CubeController.Direction.Up);
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            cubeController.Move(CubeController.Direction.Left);
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            cubeController.Move(CubeController.Direction.Down);
+            float dir = context.ReadValue<float>();
+            if (dir > 0.1f)
+            {
+                cubeController.NextCube();
+            }
+            if (dir < -0.1f)
+            {
+                cubeController.PreviousCube();
+            }
         }
     }
 }

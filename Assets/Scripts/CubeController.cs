@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using System.Linq;
 
 public class CubeController : MonoBehaviour
 {
@@ -21,13 +23,11 @@ public class CubeController : MonoBehaviour
         Left,
         Down
     }
-
-    public Cube[] Cubes;
-    public Level level;
-
     public Cube Selected;
 
-    private void Start()
+    Cube[] Cubes;
+
+    private void Awake()
     {
         Cubes = FindObjectsOfType<Cube>();
         if (Cubes.Length > 0)
@@ -36,6 +36,8 @@ public class CubeController : MonoBehaviour
         {
             Debug.LogError("No cubes in the list!");
         }
+
+        Cubes = Cubes.OrderBy(x => x.diceId).ToArray();
     }
 
     bool AllowInput
@@ -52,6 +54,20 @@ public class CubeController : MonoBehaviour
                 Selected.Move(direction);
             }
         }
+    }
+
+    public void NextCube()
+    {
+        int index = (Selected.diceId) % Cubes.Length;
+        Selected = Cubes[index];
+        Debug.Log("+ " + Selected.diceId + " " + index);
+    }
+
+    public void PreviousCube()
+    {
+        int index = (Selected.diceId - 2 + Cubes.Length) % Cubes.Length;
+        Selected = Cubes[index];
+        Debug.Log("- " + Selected.diceId + " " + index);
     }
 
     public static Vector3Int NextPosition(Vector3Int position, Direction direction)
@@ -87,11 +103,11 @@ public class CubeController : MonoBehaviour
 
     private void Update()
     {
-        if (AllowInput && Input.GetMouseButtonDown(0))
+        if (AllowInput && Mouse.current.leftButton.wasPressedThisFrame)
         {
             Camera cam = Camera.main;
 
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
