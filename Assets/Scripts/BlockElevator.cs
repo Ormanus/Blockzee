@@ -12,12 +12,14 @@ public class BlockElevator : Block
     const float AnimationDuration = 0.25f;
     float animationStartTime;
 
+    bool animating = false;
     bool movingUp = false;
     Cube passenger;
 
     public override void OnBlockEnter(Cube cube)
     {
         CubeController.BlockAnimating = true;
+        animating = true;
         movingUp = true;
         passenger = cube;
         animationStartTime = Time.time;
@@ -26,8 +28,9 @@ public class BlockElevator : Block
     public override void OnBlockExit(Cube cube)
     {
         CubeController.BlockAnimating = true;
+        animating = true;
         movingUp = false;
-        passenger = cube;
+        passenger = null;
         animationStartTime = Time.time;
     }
 
@@ -50,17 +53,23 @@ public class BlockElevator : Block
 
         if (phase >= 1)
         {
+            transform.position = toPosition;
+
             CubeController.BlockAnimating = false;
+            animating = false;
             UpdatePosition();
 
             if (passenger)
+            {
+                passenger.transform.position = toPosition + Vector3.up;
                 passenger.UpdatePosition();
+            }
         }
     }
 
     private void Update()
     {
-        if (CubeController.BlockAnimating)
+        if (animating)
             MoveElevator();
     }
 }

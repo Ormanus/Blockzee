@@ -54,7 +54,9 @@ public class CubeController : MonoBehaviour
     {
         if (AllowInput)
         {
-            if (!GetBlockAtPosition(NextPosition(Selected.Position, direction)))
+            if (!GetBlockAtPosition(NextPosition(Selected.Position, direction)) && 
+                !GetBlockAtPosition(Selected.Position + Vector3Int.up) && 
+                !GetBlockAtPosition(NextPosition(Selected.Position, direction) + Vector3Int.up))
             {
                 Selected.Move(direction);
             }
