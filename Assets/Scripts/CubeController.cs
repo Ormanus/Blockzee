@@ -29,6 +29,7 @@ public class CubeController : MonoBehaviour
 
     private void Start()
     {
+        Cubes = FindObjectsOfType<Cube>();
         if (Cubes.Length > 0)
             Selected = Cubes[0];
         else
@@ -75,7 +76,7 @@ public class CubeController : MonoBehaviour
                 return cube;
         }
 
-        foreach (Block block in level.blocks)
+        foreach (Block block in Level.Instance.blocks)
         {
             if (block.Position == position)
                 return block;
