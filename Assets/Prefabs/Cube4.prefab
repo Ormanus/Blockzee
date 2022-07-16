@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3446920136571142671}
   - component: {fileID: 422525199665165399}
   - component: {fileID: 3618854096199293522}
-  - component: {fileID: 7835797628273334881}
   - component: {fileID: 273430688964824603}
   m_Layer: 0
   m_Name: Face2
@@ -85,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7835797628273334881
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225582982362999585}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &273430688964824603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +110,7 @@ GameObject:
   - component: {fileID: 8206376212678555512}
   - component: {fileID: 4667802406468752364}
   - component: {fileID: -6011885872163782537}
+  - component: {fileID: 8999739179836314449}
   m_Layer: 0
   m_Name: Cube4
   m_TagString: Untagged
@@ -217,6 +203,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 0}
   diceId: 4
+--- !u!65 &8999739179836314449
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847373984739597577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4480566982805847779
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +227,6 @@ GameObject:
   - component: {fileID: 5314533589412149535}
   - component: {fileID: 1762272308767369176}
   - component: {fileID: 3510553616839997666}
-  - component: {fileID: 1023726578973888287}
   - component: {fileID: 7935734709431157077}
   m_Layer: 0
   m_Name: Face3
@@ -302,20 +300,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1023726578973888287
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4480566982805847779}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &7935734709431157077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +325,6 @@ GameObject:
   - component: {fileID: 4235446510966202529}
   - component: {fileID: 663435414109068883}
   - component: {fileID: 9044613207804041011}
-  - component: {fileID: 7753653181894302043}
   - component: {fileID: 364118960086228257}
   m_Layer: 0
   m_Name: Face6
@@ -415,20 +398,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7753653181894302043
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4620908299246371784}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &364118960086228257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +423,6 @@ GameObject:
   - component: {fileID: 8681587284387707908}
   - component: {fileID: 5221935466075719797}
   - component: {fileID: 1054618641090565597}
-  - component: {fileID: 833282591177178557}
   - component: {fileID: 1957992204930689633}
   m_Layer: 0
   m_Name: Face4
@@ -528,20 +496,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &833282591177178557
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4686755739046719912}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1957992204930689633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +521,6 @@ GameObject:
   - component: {fileID: 5443088135097899973}
   - component: {fileID: 3976554127757385513}
   - component: {fileID: 1244956305243828663}
-  - component: {fileID: 1541203344677555988}
   - component: {fileID: 3639366125527475289}
   m_Layer: 0
   m_Name: Face5
@@ -641,20 +594,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1541203344677555988
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8396620216576331706}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &3639366125527475289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,7 +619,6 @@ GameObject:
   - component: {fileID: 7340049009045141662}
   - component: {fileID: 8370324707781654886}
   - component: {fileID: 4894638078527536269}
-  - component: {fileID: 8665953959296854609}
   - component: {fileID: 3989780507814828474}
   m_Layer: 0
   m_Name: Face1
@@ -754,20 +692,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8665953959296854609
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8441833639797875043}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &3989780507814828474
 MonoBehaviour:
   m_ObjectHideFlags: 0

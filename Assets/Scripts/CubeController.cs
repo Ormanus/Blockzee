@@ -84,4 +84,23 @@ public class CubeController : MonoBehaviour
 
         return null;
     }
+
+    private void Update()
+    {
+        if (AllowInput && Input.GetMouseButtonDown(0))
+        {
+            Camera cam = Camera.main;
+
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Transform hitObject = hit.transform;
+                if (hitObject.TryGetComponent<Cube>(out var cube))
+                {
+                    Selected = cube;
+                }
+            }
+        }
+    }
 }
