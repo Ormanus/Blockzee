@@ -23,6 +23,7 @@ public class Cube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UpdatePosition();
         MeshRenderer mr = GetComponent<MeshRenderer>();
         Material material = new Material(mr.sharedMaterial);
         material.color = color;
@@ -86,24 +87,24 @@ public class Cube : MonoBehaviour
         float amount = 90;
         Vector3 axis = Vector3.right;
 
+        Vector3Int nextPosition = CubeController.NextPosition(Position, direction);
+
+        targetPosition = nextPosition;
+
         originalPosition = transform.position;
         originalRotation = transform.rotation;
 
         switch (direction)
         {
             case CubeController.Direction.Up:
-                targetPosition = originalPosition + Vector3.forward;
                 break;
             case CubeController.Direction.Down:
-                targetPosition = originalPosition + Vector3.back;
                 amount = -amount;
                 break;
             case CubeController.Direction.Left:
-                targetPosition = originalPosition + Vector3.left;
                 axis = Vector3.forward;
                 break;
             case CubeController.Direction.Right:
-                targetPosition = originalPosition + Vector3.right;
                 axis = Vector3.forward;
                 amount = -amount;
                 break;
