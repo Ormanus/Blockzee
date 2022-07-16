@@ -57,6 +57,11 @@ public class CubeController : MonoBehaviour
         }
     }
 
+    public void SelectCube(int index)
+    {
+        Selected = Cubes[index];
+    }
+
     public void NextCube()
     {
         int index = (Selected.diceId) % Cubes.Length;

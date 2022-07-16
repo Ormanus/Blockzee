@@ -47,4 +47,12 @@ public class InputReceiver : MonoBehaviour
             }
         }
     }
+
+    public void CubeSelectnumber(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            cubeController.SelectCube(int.Parse(context.control.name) - 1);
+        }
+    }
 }
