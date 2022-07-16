@@ -6,14 +6,14 @@ public class BlockFinish : Block
 {
     bool IsYachtzee()
     {
-        int eyes = -1;
+        //int eyes = -1;
         foreach (Cube cube in CubeController.Instance.Cubes)
         {
-            if (eyes == -1)
-                eyes = cube.GetEyes();
+            //if (eyes == -1)
+            //    eyes = cube.GetEyes();
 
-            if (cube.GetEyes() != eyes)
-                return false;
+            //if (cube.GetEyes() != eyes)
+            //    return false;
 
             if (!cube.blockBelow || cube.blockBelow.GetType() != typeof(BlockFinish))
                 return false;
