@@ -68,6 +68,7 @@ public class Cube : Block
         animating = false;
         falling = false;
         CubeController.CubeAnimating = false;
+        AudioManager.PlayClip(AudioManager.Instance.FallSound);
         ChangeBlock();
     }
 
@@ -86,6 +87,7 @@ public class Cube : Block
         {
             animating = false;
             CubeController.CubeAnimating = false;
+            AudioManager.PlayClip(AudioManager.Instance.MoveSound);
             ChangeBlock();
         }
         else

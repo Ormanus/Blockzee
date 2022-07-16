@@ -168,6 +168,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &258735362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 258735364}
+  - component: {fileID: 258735363}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &258735363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258735362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751d9366135eec74ab5cc6499e8a7bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSound: {fileID: 8300000, guid: b9ea32cc17ca9304f96f9c8955fdb16a, type: 3}
+  FallSound: {fileID: 8300000, guid: 910e6100b1150c342ab30110c0adcca0, type: 3}
+  DeathSound: {fileID: 8300000, guid: 4a2287c1b2d0d494e8ce81cd1f950543, type: 3}
+  SingleFinishSound: {fileID: 8300000, guid: e26604e6998464f43927f2bf290e16e8, type: 3}
+  FullFinishSound: {fileID: 8300000, guid: c81811ada29462745b4f967b84275546, type: 3}
+--- !u!4 &258735364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258735362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6359334, y: -1.9806948, z: 3.7332172}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
