@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4667802406468752364}
   - component: {fileID: -6011885872163782537}
   m_Layer: 0
-  m_Name: Cube1
+  m_Name: Cube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 298a0f21be7218048b5a08f5b4abec13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.627451, g: 0.627451, b: 0.1254902, a: 0}
-  diceId: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
+  diceId: 4
 --- !u!1 &4480566982805847779
 GameObject:
   m_ObjectHideFlags: 0
