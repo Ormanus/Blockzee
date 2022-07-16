@@ -10,7 +10,7 @@ public class Block : MonoBehaviour
     public virtual void OnBlockExit(Cube cube) { }
     protected virtual void OnStart() { }
 
-    protected void UpdatePosition()
+    public void UpdatePosition()
     {
         Position = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
     }

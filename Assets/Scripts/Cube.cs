@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : MonoBehaviour
+public class Cube : Block
 {
     public Vector3Int Position { get; private set; }
     public Color color;
@@ -20,10 +20,8 @@ public class Cube : MonoBehaviour
 
     bool animating = false;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnStart()
     {
-        UpdatePosition();
         MeshRenderer mr = GetComponent<MeshRenderer>();
         Material material = new Material(mr.sharedMaterial);
         material.color = color;
@@ -46,11 +44,6 @@ public class Cube : MonoBehaviour
             }
         }
         return eyes; 
-    }
-
-    public void UpdatePosition()
-    {
-        Position = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
     }
 
     void MoveCube()
