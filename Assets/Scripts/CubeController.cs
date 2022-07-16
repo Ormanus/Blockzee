@@ -8,7 +8,7 @@ public class CubeController : MonoBehaviour
     public static bool BlockAnimating = false;
     public static bool SceneTransition = false;
 
-    public CubeController Instance;
+    public static CubeController Instance;
     public CubeController()
     {
         Instance = this;
