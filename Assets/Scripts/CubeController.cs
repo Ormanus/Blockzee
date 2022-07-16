@@ -8,6 +8,12 @@ public class CubeController : MonoBehaviour
     public static bool BlockAnimating = false;
     public static bool SceneTransition = false;
 
+    public CubeController Instance;
+    public CubeController()
+    {
+        Instance = this;
+    }
+
     public enum Direction
     {
         Right,
@@ -40,7 +46,7 @@ public class CubeController : MonoBehaviour
     {
         if (AllowInput)
         {
-            if (!GetBlockAtPosition(NextPosition(Selected.Position, direction)))
+            if (!IsObstructed(NextPosition(Selected.Position, direction)))
             {
                 Selected.Move(direction);
             }
@@ -59,22 +65,20 @@ public class CubeController : MonoBehaviour
         };
     }
 
-
-
-    public Block GetBlockAtPosition(Vector3Int position)
+    bool IsObstructed(Vector3Int position)
     {
         foreach (Cube cube in Cubes)
         {
             if (cube.Position == position)
-                return cube;
+                return true;
         }
 
         foreach (Block block in level.blocks)
         {
             if (block.Position == position)
-                return block;
+                return true;
         }
 
-        return null;
+        return false;
     }
 }
