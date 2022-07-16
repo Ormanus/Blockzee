@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
+    public Vector3Int Position { get; private set; }
     public Color color;
     public int diceId;
     public const float animationDuration = 0.2f;
@@ -46,21 +47,26 @@ public class Cube : MonoBehaviour
         return eyes; 
     }
 
+    public void UpdatePosition()
+    {
+        Position = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
+    }
+
     void MoveCube()
     {
         if (animating)
         {
             float phase = (Time.time - animationStartTime) / animationDuration;
+
+            transform.position = Vector3.Lerp(originalPosition, targetPosition, phase) + Vector3.up * 0.33f * Mathf.Sin(Math.Clamp(phase, 0, 1) * Mathf.PI);
+            transform.rotation = Quaternion.Lerp(originalRotation, targetRotation, phase);
+
             if (phase >= 1)
             {
                 animating = false;
                 CubeController.CubeAnimating = false;
+                UpdatePosition();
             }
-
-            phase = Math.Min(phase, 1);
-
-            transform.position = Vector3.Lerp(originalPosition, targetPosition, phase) + Vector3.up * 0.33f * Mathf.Sin(phase * Mathf.PI);
-            transform.rotation = Quaternion.Lerp(originalRotation, targetRotation, phase);
         }
 
     }
