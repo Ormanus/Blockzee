@@ -46,7 +46,7 @@ public class CubeController : MonoBehaviour
     {
         if (AllowInput)
         {
-            if (!IsObstructed(NextPosition(Selected.Position, direction)))
+            if (!GetBlockAtPosition(NextPosition(Selected.Position, direction)))
             {
                 Selected.Move(direction);
             }
@@ -65,20 +65,22 @@ public class CubeController : MonoBehaviour
         };
     }
 
-    bool IsObstructed(Vector3Int position)
+
+
+    public Block GetBlockAtPosition(Vector3Int position)
     {
         foreach (Cube cube in Cubes)
         {
             if (cube.Position == position)
-                return true;
+                return cube;
         }
 
         foreach (Block block in level.blocks)
         {
             if (block.Position == position)
-                return true;
+                return block;
         }
 
-        return false;
+        return null;
     }
 }
