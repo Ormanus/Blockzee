@@ -9,7 +9,7 @@ public class BlockElevator : Block
     [HideInInspector]
     public Vector3Int ElevatorDownPosition;
 
-    const float AnimationDuration = 1f;
+    const float AnimationDuration = 0.25f;
     float animationStartTime;
 
     bool movingUp = false;
