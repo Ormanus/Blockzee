@@ -28,6 +28,7 @@ public class BlockFinish : Block
         {
             Debug.Log("Level Finished");
             AudioManager.PlayClip(AudioManager.Instance.FullFinishSound);
+            CubeController.Instance.Win();
         }
         else
         {

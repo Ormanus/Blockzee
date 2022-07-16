@@ -8,6 +8,7 @@ public class Cube : Block
     public Color color;
     public int diceId;
     public const float animationDuration = 0.2f;
+    public const float victoryDuration = 0.25f;
 
     Vector3 originalPosition;
     Quaternion originalRotation;
@@ -22,11 +23,14 @@ public class Cube : Block
 
     const float Gravity = 20;
     readonly Color selectionColor = new Color(1.0f, 1.0f, 0.5f);
+    readonly Color winColor1 = new Color(1.0f, 0.25f, 0.25f);
+    readonly Color winColor2 = new Color(1.0f, 0.5f, 0.5f);
 
     public Block blockBelow;
-
+    int victoryId = 0;
 
     Material material;
+    bool victoryAnimationDone = false;
 
     protected override void OnStart()
     {
@@ -142,10 +146,46 @@ public class Cube : Block
         }
     }
 
+    public void Win(int id)
+    {
+        victoryId = id;
+        animationStartTime = Time.time;
+    }
+    void WinAnimation()
+    {
+        if (victoryAnimationDone)
+            return;
+
+        float phase = (Time.time - animationStartTime - victoryDuration * victoryId / 4f);
+        if (phase < 1)
+        {
+            if (Time.time > animationStartTime + victoryDuration * victoryId / 4f)
+            {
+                material.color = Color.Lerp(winColor1, winColor2, 0.5f + Mathf.Sin((phase + 0.5f) * Mathf.PI) / 2);
+            }
+
+            float y = Mathf.Max(0, Mathf.Sin(phase * Mathf.PI * 2), 0) + Position.y;
+            transform.position = Vector3.up * y + Position;
+        }
+        else
+        {
+            transform.position = Position;
+            material.color = winColor1; 
+            victoryAnimationDone = true;
+        }
+    }
+
     private void Update()
     {
-        MoveCube();
-        ColorCube();
+        if (CubeController.Winning)
+        {
+            WinAnimation();
+        }
+        else
+        {
+            MoveCube();
+            ColorCube();
+        }
     }
 
     internal void Move(CubeController.Direction direction)

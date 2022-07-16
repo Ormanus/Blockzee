@@ -8,6 +8,9 @@ public class FollowCubes : MonoBehaviour
     const float CameraSpeed = 10;
     void UpdateTargetPosition()
     {
+        if (CubeController.Winning)
+            return;
+
         float minX = 0, maxX = 0, minY = 0, maxY = 0, minZ = 0, maxZ = 0;
         bool firstCubeChecked = false;
 

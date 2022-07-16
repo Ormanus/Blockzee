@@ -9,6 +9,7 @@ public class CubeController : MonoBehaviour
     public static bool CubeAnimating = false;
     public static bool BlockAnimating = false;
     public static bool SceneTransition = false;
+    public static bool Winning = false;
 
     public static CubeController Instance;
     public CubeController()
@@ -25,7 +26,7 @@ public class CubeController : MonoBehaviour
     }
     public Cube Selected;
 
-    Cube[] Cubes;
+    public Cube[] Cubes;
 
     private void Awake()
     {
@@ -82,7 +83,16 @@ public class CubeController : MonoBehaviour
         };
     }
 
-
+    public void Win()
+    {
+        Winning = true;
+        Cube[] victoryCubes = Cubes.OrderBy(x => x.Position.x).ToArray();
+        int id = 0;
+        foreach (Cube cube in victoryCubes)
+        {
+            cube.Win(id++);
+        }
+    }
 
     public Block GetBlockAtPosition(Vector3Int position)
     {
