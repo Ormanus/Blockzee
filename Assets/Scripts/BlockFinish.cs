@@ -4,8 +4,34 @@ using UnityEngine;
 
 public class BlockFinish : Block
 {
+    bool IsYachtzee()
+    {
+        int eyes = -1;
+        foreach (Cube cube in CubeController.Instance.Cubes)
+        {
+            if (eyes == -1)
+                eyes = cube.GetEyes();
+
+            if (cube.GetEyes() != eyes)
+                return false;
+
+            if (!cube.blockBelow || cube.blockBelow.GetType() != typeof(BlockFinish))
+                return false;
+        }
+
+        return true;
+    }
+
     public override void OnBlockEnter(Cube cube)
     {
-        AudioManager.PlayClip(AudioManager.Instance.SingleFinishSound);
+        if (IsYachtzee())
+        {
+            Debug.Log("Level Finished");
+            AudioManager.PlayClip(AudioManager.Instance.FullFinishSound);
+        }
+        else
+        {
+            AudioManager.PlayClip(AudioManager.Instance.SingleFinishSound);
+        }
     }
 }

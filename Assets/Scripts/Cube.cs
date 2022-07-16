@@ -23,7 +23,7 @@ public class Cube : Block
     const float Gravity = 20;
     readonly Color selectionColor = new Color(1.0f, 1.0f, 0.5f);
 
-    Block blockBelow;
+    public Block blockBelow;
 
 
     Material material;
