@@ -17,6 +17,7 @@ public class CubeController : MonoBehaviour
     }
 
     public Cube[] Cubes;
+    public Level level;
 
     Cube Selected;
 
@@ -38,6 +39,40 @@ public class CubeController : MonoBehaviour
     public void Move(Direction direction)
     {
         if (AllowInput)
-            Selected.Move(direction);
+        {
+            if (!IsObstructed(NextPosition(Selected.Position, direction)))
+            {
+                Selected.Move(direction);
+            }
+        }
+    }
+
+    public Vector3Int NextPosition(Vector3Int position, Direction direction)
+    {
+        return direction switch
+        {
+            Direction.Right => position + Vector3Int.right,
+            Direction.Up => position + Vector3Int.forward,
+            Direction.Left => position + Vector3Int.left,
+            Direction.Down => position + Vector3Int.back,
+            _ => position + Vector3Int.right,
+        };
+    }
+
+    bool IsObstructed(Vector3Int position)
+    {
+        foreach (Cube cube in Cubes)
+        {
+            if (cube.Position == position)
+                return true;
+        }
+
+        foreach (Block block in level.blocks)
+        {
+            if (block.Position == position)
+                return true;
+        }
+
+        return false;
     }
 }
