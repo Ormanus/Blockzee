@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    public const int VoidHeihgt = -4;
     public static Level Instance { get; private set; }
     public Level()
     {

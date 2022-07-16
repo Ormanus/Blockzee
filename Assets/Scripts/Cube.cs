@@ -18,9 +18,15 @@ public class Cube : Block
     float animationStartTime;
 
     bool animating = false;
+    bool falling = false;
+
+    const float Gravity = 20;
+
+    Block blockBelow;
 
     protected override void OnStart()
     {
+        ChangeBlock();
         MeshRenderer mr = GetComponent<MeshRenderer>();
         Material material = new Material(mr.sharedMaterial);
         material.color = color;
@@ -45,9 +51,66 @@ public class Cube : Block
         return eyes; 
     }
 
+    void ChangeBlock()
+    {
+        if (blockBelow)
+            blockBelow.OnBlockExit(this);
+
+        blockBelow = CubeController.Instance.GetBlockAtPosition(Position + Vector3Int.down);
+
+        if (blockBelow)
+            blockBelow.OnBlockEnter(this);
+    }
+
+    void EndFalling()
+    {
+        UpdatePosition();
+        animating = false;
+        falling = false;
+        CubeController.CubeAnimating = false;
+        ChangeBlock();
+    }
+
+    void EndAnimation()
+    {
+        UpdatePosition();
+        int fallHeight = 0;
+        Vector3Int checkedBlockPosition = Position + Vector3Int.down;
+        while (!CubeController.Instance.GetBlockAtPosition(checkedBlockPosition) && checkedBlockPosition.y > Level.VoidHeihgt)
+        {
+            fallHeight++;
+            checkedBlockPosition += Vector3Int.down;
+        }
+
+        if (fallHeight == 0)
+        {
+            animating = false;
+            CubeController.CubeAnimating = false;
+            ChangeBlock();
+        }
+        else
+        {
+            falling = true;
+            originalPosition = Position;
+            targetPosition = Position + Vector3Int.down * fallHeight;
+            animationStartTime = Time.time;
+        }
+    }
+
     void MoveCube()
     {
-        if (animating)
+        if (falling)
+        {
+            float t = Time.time - animationStartTime;
+            float h = Mathf.Max(targetPosition.y, originalPosition.y - t * t * Gravity);
+            transform.position = new Vector3(transform.position.x, h, transform.position.z);
+
+            if (h == targetPosition.y)
+            {
+                EndFalling();
+            }
+        }
+        else if (animating)
         {
             float phase = (Time.time - animationStartTime) / animationDuration;
 
@@ -55,11 +118,7 @@ public class Cube : Block
             transform.rotation = Quaternion.Lerp(originalRotation, targetRotation, phase);
 
             if (phase >= 1)
-            {
-                animating = false;
-                CubeController.CubeAnimating = false;
-                UpdatePosition();
-            }
+                EndAnimation();
         }
 
     }
