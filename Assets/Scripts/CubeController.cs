@@ -61,14 +61,12 @@ public class CubeController : MonoBehaviour
     {
         int index = (Selected.diceId) % Cubes.Length;
         Selected = Cubes[index];
-        Debug.Log("+ " + Selected.diceId + " " + index);
     }
 
     public void PreviousCube()
     {
         int index = (Selected.diceId - 2 + Cubes.Length) % Cubes.Length;
         Selected = Cubes[index];
-        Debug.Log("- " + Selected.diceId + " " + index);
     }
 
     public static Vector3Int NextPosition(Vector3Int position, Direction direction)
