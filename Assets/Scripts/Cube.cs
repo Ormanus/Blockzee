@@ -21,14 +21,18 @@ public class Cube : Block
     bool falling = false;
 
     const float Gravity = 20;
+    readonly Color selectionColor = new Color(1.0f, 1.0f, 0.5f);
 
     Block blockBelow;
+
+
+    Material material;
 
     protected override void OnStart()
     {
         ChangeBlock();
         MeshRenderer mr = GetComponent<MeshRenderer>();
-        Material material = new Material(mr.sharedMaterial);
+        material = new Material(mr.sharedMaterial);
         material.color = color;
         mr.material = material;
     }
@@ -125,9 +129,23 @@ public class Cube : Block
 
     }
 
+    void ColorCube()
+    {
+        if (CubeController.Instance.Selected == this)
+        {
+            float phase = 0.5f + Mathf.Sin(Time.time * Mathf.PI) / 2;
+            material.color = Color.Lerp(color, selectionColor, phase / 2);
+        }
+        else
+        {
+            material.color = color;
+        }
+    }
+
     private void Update()
     {
         MoveCube();
+        ColorCube();
     }
 
     internal void Move(CubeController.Direction direction)

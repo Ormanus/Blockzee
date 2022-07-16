@@ -25,7 +25,7 @@ public class CubeController : MonoBehaviour
     public Cube[] Cubes;
     public Level level;
 
-    Cube Selected;
+    public Cube Selected;
 
     private void Start()
     {
