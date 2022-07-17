@@ -9,6 +9,11 @@ public class MainMenuController : MonoBehaviour
     public LevelButton[] row2;
 
     Vector2Int selection = new Vector2Int(0, 0);
+
+    float lastMovement = 0f;
+    const float movementDelay = 0.3f;
+
+
     private void Start()
     {
         GetButton().SetSelected(true);
@@ -16,35 +21,47 @@ public class MainMenuController : MonoBehaviour
 
     public void Control(InputAction.CallbackContext context)
     {
-        if (context.phase != InputActionPhase.Started)
+        if (lastMovement + movementDelay > Time.time)
             return;
         
         var value = context.ReadValue<Vector2>();
 
-        if (value == null)
+        if (value == null || value.sqrMagnitude < 0.1f)
+        {
             return;
+        }
+        else
+        {
+            Debug.Log($"x: {value.x}, y: {value.y}");
+        }
 
         GetButton().SetSelected(false);
 
-        if (value.x > 0.1f)
+        if (Mathf.Abs(value.x) > Mathf.Abs(value.y))
         {
-            selection = new Vector2Int((selection.x + 1) % 3, selection.y);
+            if (value.x > 0.0f)
+            {
+                selection = new Vector2Int((selection.x + 1) % 3, selection.y);
+            }
+            else if (value.x < 0.0f)
+            {
+                selection = new Vector2Int((selection.x + 2) % 3, selection.y);
+            }
         }
-        if (value.x < -0.1f)
+        else
         {
-            selection = new Vector2Int((selection.x + 2) % 3, selection.y);
-        }
-        if (value.y > 0.1f)
-        {
-            selection = new Vector2Int(selection.x, (selection.y + 1) % 2);
-        }
-        if (value.y < -0.1f)
-        {
-            selection = new Vector2Int(selection.x, (selection.y + 1) % 2);
+            if (value.y > 0.0f)
+            {
+                selection = new Vector2Int(selection.x, (selection.y + 1) % 2);
+            }
+            else if (value.y < 0.0f)
+            {
+                selection = new Vector2Int(selection.x, (selection.y + 1) % 2);
+            }
         }
 
+        lastMovement = Time.time;
         GetButton().SetSelected(true);
-
         AudioManager.PlayClip(AudioManager.Instance.ClickSound);
     }
 
