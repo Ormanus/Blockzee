@@ -12,7 +12,7 @@ public static class SaveSystem
     }
 
     const string key = "SaveData";
-    const int levelCount = 9;
+    const int levelCount = 8;
 
     static SaveData _current = null;
     static SaveData CurrentSave
@@ -44,7 +44,6 @@ public static class SaveSystem
                     }
                 }
             }
-            Debug.Log($"{_current} ({_current?.version}, {_current?.unlocks.Length})");
             return _current;
         }
     }

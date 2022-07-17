@@ -7,7 +7,6 @@ public class MainMenuController : MonoBehaviour
 {
     public LevelButton[] row1;
     public LevelButton[] row2;
-    public LevelButton[] row3;
 
     Vector2Int selection = new Vector2Int(0, 0);
 
@@ -38,22 +37,22 @@ public class MainMenuController : MonoBehaviour
         {
             if (value.x > 0.0f)
             {
-                selection = new Vector2Int((selection.x + 1) % 3, selection.y);
+                selection = new Vector2Int((selection.x + 1) % 4, selection.y);
             }
             else if (value.x < 0.0f)
             {
-                selection = new Vector2Int((selection.x + 2) % 3, selection.y);
+                selection = new Vector2Int((selection.x + 3) % 4, selection.y);
             }
         }
         else
         {
             if (value.y > 0.0f)
             {
-                selection = new Vector2Int(selection.x, (selection.y + 2) % 3);
+                selection = new Vector2Int(selection.x, (selection.y + 1) % 2);
             }
             else if (value.y < 0.0f)
             {
-                selection = new Vector2Int(selection.x, (selection.y + 1) % 3);
+                selection = new Vector2Int(selection.x, (selection.y + 1) % 2);
             }
         }
 
@@ -68,7 +67,6 @@ public class MainMenuController : MonoBehaviour
         {
             0 => row1[selection.x],
             1 => row2[selection.x],
-            2 => row3[selection.x],
             _ => null,
         };
     }
