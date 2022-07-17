@@ -105,6 +105,23 @@ public class Cube : Block
         }
     }
 
+    void Die()
+    {
+        CubeController.Instance.Restart();
+        Instantiate(CubeController.Instance.DeathPrefab, transform.position, Quaternion.identity);
+        AudioManager.PlayClip(AudioManager.Instance.DeathSound);
+
+        foreach (Face face in GetComponentsInChildren<Face>())
+        {
+            face.transform.parent = transform.parent;
+            Rigidbody rb = face.gameObject.AddComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.velocity = face.transform.up * 2;
+        }
+
+        gameObject.SetActive(false);
+    }
+
     void MoveCube()
     {
         if (falling)
@@ -113,7 +130,11 @@ public class Cube : Block
             float h = Mathf.Max(targetPosition.y, originalPosition.y - t * t * Gravity);
             transform.position = new Vector3(transform.position.x, h, transform.position.z);
 
-            if (h == targetPosition.y)
+            if (h <= Level.VoidHeihgt + 1)
+            {
+                Die();
+            }
+            else if (h == targetPosition.y)
             {
                 EndFalling();
             }

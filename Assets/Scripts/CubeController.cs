@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class CubeController : MonoBehaviour
@@ -10,12 +11,9 @@ public class CubeController : MonoBehaviour
     public static bool BlockAnimating = false;
     public static bool SceneTransition = false;
     public static bool Winning = false;
+    public static bool Dying = false;
 
     public static CubeController Instance;
-    public CubeController()
-    {
-        Instance = this;
-    }
 
     public enum Direction
     {
@@ -24,30 +22,34 @@ public class CubeController : MonoBehaviour
         Left,
         Down
     }
+    [HideInInspector]
     public Cube Selected;
-
+    [HideInInspector]
     public Cube[] Cubes;
+    public GameObject DeathPrefab;
 
     private void Awake()
     {
+        Instance = this;
+        Dying = false;
         CubeAnimating = false;
         BlockAnimating = false;
         SceneTransition = true;
         Winning = false;
         Cubes = FindObjectsOfType<Cube>();
+        Cubes = Cubes.OrderBy(x => x.diceId).ToArray();
+
         if (Cubes.Length > 0)
             Selected = Cubes[0];
         else
         {
             Debug.LogError("No cubes in the list!");
         }
-
-        Cubes = Cubes.OrderBy(x => x.diceId).ToArray();
     }
 
     bool AllowInput
     {
-        get { return !CubeAnimating && !SceneTransition && !BlockAnimating && !Winning; }
+        get { return !CubeAnimating && !SceneTransition && !BlockAnimating && !Winning && !Dying; }
     }
 
     public void Move(Direction direction)
@@ -80,6 +82,12 @@ public class CubeController : MonoBehaviour
         Selected = Cubes[index];
     }
 
+
+    public void Restart()
+    {
+        StartCoroutine(PrepareSceneTransition(SceneManager.GetActiveScene().name, 1));
+    }
+
     public static Vector3Int NextPosition(Vector3Int position, Direction direction)
     {
         return direction switch
@@ -92,10 +100,10 @@ public class CubeController : MonoBehaviour
         };
     }
 
-    IEnumerator PrepareSceneTransition()
+    IEnumerator PrepareSceneTransition(string sceneName, float delay)
     {
-        yield return new WaitForSeconds(2);
-        FadeController.Instance.EndFade(Level.Instance.NextLevel);
+        yield return new WaitForSeconds(delay);
+        FadeController.Instance.EndFade(sceneName);
     }
 
     public void Win()
@@ -108,7 +116,7 @@ public class CubeController : MonoBehaviour
             cube.Win(id++);
         }
 
-        StartCoroutine(PrepareSceneTransition());
+        StartCoroutine(PrepareSceneTransition(Level.Instance.NextLevel.name, 2));
 
         // TODO: check if Yahtzee
         SaveSystem.SetLevelState(Level.Instance.levelNumber, 1);

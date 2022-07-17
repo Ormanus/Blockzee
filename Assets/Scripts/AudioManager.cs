@@ -12,11 +12,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip ClickSound;
 
     public static AudioManager Instance;
-    public AudioManager()
+    void Awake()
     {
         Instance = this;
     }
-
     IEnumerator CreateAudioPlayer(AudioClip clip)
     {
         GameObject go = new GameObject("SoundPlayer");

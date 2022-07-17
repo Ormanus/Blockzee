@@ -51,7 +51,7 @@ public class LevelButton : MonoBehaviour, IPointerDownHandler
         {
             transitioning = true;
             AudioManager.PlayClip(AudioManager.Instance.ClickSound);
-            FadeController.Instance.EndFade(TargetLevel);
+            FadeController.Instance.EndFade(TargetLevel.name);
         }
     }
 

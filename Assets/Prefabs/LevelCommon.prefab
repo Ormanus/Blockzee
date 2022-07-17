@@ -208,9 +208,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSound: {fileID: 8300000, guid: b9ea32cc17ca9304f96f9c8955fdb16a, type: 3}
   FallSound: {fileID: 8300000, guid: 910e6100b1150c342ab30110c0adcca0, type: 3}
-  DeathSound: {fileID: 8300000, guid: 4a2287c1b2d0d494e8ce81cd1f950543, type: 3}
+  DeathSound: {fileID: 8300000, guid: 1a281183de289e84eafc2ba2e47dfd9d, type: 3}
   SingleFinishSound: {fileID: 8300000, guid: e26604e6998464f43927f2bf290e16e8, type: 3}
   FullFinishSound: {fileID: 8300000, guid: c81811ada29462745b4f967b84275546, type: 3}
+  ClickSound: {fileID: 0}
 --- !u!1 &1215557409859481070
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocks: []
   finishBlocks: []
+  levelNumber: 0
   NextLevel: {fileID: 0}
 --- !u!1 &1215557410831128073
 GameObject:
@@ -495,6 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Selected: {fileID: 0}
   Cubes: []
+  DeathPrefab: {fileID: 2847373984739597577, guid: d430891cfc2715348b37a16b9ee4bbcf, type: 3}
 --- !u!1 &3475494086746286415
 GameObject:
   m_ObjectHideFlags: 0

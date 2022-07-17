@@ -8,10 +8,6 @@ public class FadeController : MonoBehaviour
 {
     public float fadeDuration = 0.5f;
     public static FadeController Instance;
-    public FadeController()
-    {
-        Instance = this;
-    }
 
     float endFadeStartTime;
     bool endFading;
@@ -22,16 +18,17 @@ public class FadeController : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         image = GetComponent<Image>();
         image.color = new Color(0, 0, 0, 1f);
     }
 
-    public void EndFade(Object scene)
+    public void EndFade(string sceneName)
     {
         endFading = true;
         endFadeStartTime = Time.time;
 
-        targetScene = scene.name;
+        targetScene = sceneName;
     }
 
     void Update()
