@@ -12,6 +12,7 @@ public class BackAndForth : Block
     protected override void OnStart()
     {
         DownPosition = Position;
+        UpPosition = Position + UpPosition;
     }
 
     const float AnimationDuration = 0.25f;
