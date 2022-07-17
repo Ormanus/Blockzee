@@ -181,7 +181,7 @@ public class Cube : Block
                 material.color = Color.Lerp(winColor1, winColor2, 0.5f + Mathf.Sin((phase + 0.5f) * Mathf.PI) / 2);
             }
 
-            float y = Mathf.Max(0, Mathf.Sin(phase * Mathf.PI * 2), 0) + Position.y;
+            float y = Mathf.Max(0, Mathf.Sin(phase * Mathf.PI * 2), 0);
             transform.position = Vector3.up * y + Position;
         }
         else
