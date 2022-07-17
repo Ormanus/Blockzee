@@ -12,7 +12,8 @@ public class Block : MonoBehaviour
 
     public void UpdatePosition()
     {
-        Position = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
+        //Position = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
+        Position = Vector3Int.RoundToInt(transform.position);
     }
 
     private void Start()

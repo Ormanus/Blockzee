@@ -172,11 +172,18 @@ public class Cube : Block
 
     void TransitionAnimation()
     {
-        float h = (1 - Time.timeSinceLevelLoad) * 20;
-        if (h < 0)
+        float h = (1f - Time.timeSinceLevelLoad) * 20f;
+        if (h < 0f)
         {
             transform.position = Position;
             CubeController.SceneTransition = false;
+
+            foreach (Cube c in CubeController.Instance.Cubes)
+            {
+                c.UpdatePosition();
+                c.transform.position = c.Position;
+            }
+
             AudioManager.PlayClip(AudioManager.Instance.FallSound);
             ChangeBlock();
         }
