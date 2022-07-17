@@ -106,7 +106,7 @@ public class CubeController : MonoBehaviour
         FadeController.Instance.EndFade(sceneName);
     }
 
-    public void Win()
+    public void Win(bool yahtzee)
     {
         Winning = true;
         Cube[] victoryCubes = Cubes.OrderBy(x => x.Position.x).ToArray();
@@ -118,8 +118,7 @@ public class CubeController : MonoBehaviour
 
         StartCoroutine(PrepareSceneTransition(Level.Instance.NextLevel.name, 2));
 
-        // TODO: check if Yahtzee
-        SaveSystem.SetLevelState(Level.Instance.levelNumber, 1);
+        SaveSystem.SetLevelState(Level.Instance.levelNumber, yahtzee ? 2 : 1);
     }
 
     public Block GetBlockAtPosition(Vector3Int position)

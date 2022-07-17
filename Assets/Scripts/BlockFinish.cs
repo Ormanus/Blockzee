@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class BlockFinish : Block
 {
-    bool IsYachtzee()
+    bool IsYahtzee()
     {
-        //int eyes = -1;
+        int eyes = -1;
         foreach (Cube cube in CubeController.Instance.Cubes)
         {
-            //if (eyes == -1)
-            //    eyes = cube.GetEyes();
+            if (eyes == -1)
+                eyes = cube.GetEyes();
 
-            //if (cube.GetEyes() != eyes)
-            //    return false;
+            if (cube.GetEyes() != eyes)
+                return false;
 
+            if (!cube.blockBelow || cube.blockBelow.GetType() != typeof(BlockFinish))
+                return false;
+        }
+
+        return true;
+    }
+
+    bool IsWinning()
+    {
+        foreach (Cube cube in CubeController.Instance.Cubes)
+        {
             if (!cube.blockBelow || cube.blockBelow.GetType() != typeof(BlockFinish))
                 return false;
         }
@@ -24,11 +35,11 @@ public class BlockFinish : Block
 
     public override void OnBlockEnter(Cube cube)
     {
-        if (IsYachtzee())
+        if (IsWinning())
         {
             Debug.Log("Level Finished");
             AudioManager.PlayClip(AudioManager.Instance.FullFinishSound);
-            CubeController.Instance.Win();
+            CubeController.Instance.Win(IsYahtzee());
         }
         else
         {

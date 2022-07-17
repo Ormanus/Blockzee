@@ -861,6 +861,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8492067586559579621, guid: 5d6e952b8bdb39f429ce57af525fb86d, type: 3}
+      propertyPath: UpPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492067586559579621, guid: 5d6e952b8bdb39f429ce57af525fb86d, type: 3}
       propertyPath: ElevatorUpPosition.x
       value: 2
       objectReference: {fileID: 0}
@@ -3380,6 +3384,10 @@ PrefabInstance:
     - target: {fileID: 7449160789606121234, guid: 5d6e952b8bdb39f429ce57af525fb86d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492067586559579621, guid: 5d6e952b8bdb39f429ce57af525fb86d, type: 3}
+      propertyPath: UpPosition.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8492067586559579621, guid: 5d6e952b8bdb39f429ce57af525fb86d, type: 3}
       propertyPath: ElevatorUpPosition.x
