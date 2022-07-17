@@ -511,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 1276266344883608591, guid: f8a33825ec32d9746b3de8ae4a35cd78, type: 3}
       propertyPath: TargetLevel
       value: 
-      objectReference: {fileID: 102900000, guid: 8f37ff9df0f30b24fbf389813f0d6da8, type: 3}
+      objectReference: {fileID: 102900000, guid: 8cae305e03375404caa83b5d32aa0f43, type: 3}
     - target: {fileID: 2017295340342208053, guid: f8a33825ec32d9746b3de8ae4a35cd78, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -949,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 1276266344883608591, guid: f8a33825ec32d9746b3de8ae4a35cd78, type: 3}
       propertyPath: TargetLevel
       value: 
-      objectReference: {fileID: 102900000, guid: 8f37ff9df0f30b24fbf389813f0d6da8, type: 3}
+      objectReference: {fileID: 102900000, guid: 3cc6f56af14f1b941b0ad78be63a0e97, type: 3}
     - target: {fileID: 2017295340342208053, guid: f8a33825ec32d9746b3de8ae4a35cd78, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
