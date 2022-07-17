@@ -7351,6 +7351,10 @@ PrefabInstance:
       value: LevelCommon
       objectReference: {fileID: 0}
     - target: {fileID: 1215557410196812011, guid: 573628a0d5653a54caef9918ca97da9f, type: 3}
+      propertyPath: NextLevel
+      value: 
+      objectReference: {fileID: 102900000, guid: 8cae305e03375404caa83b5d32aa0f43, type: 3}
+    - target: {fileID: 1215557410196812011, guid: 573628a0d5653a54caef9918ca97da9f, type: 3}
       propertyPath: levelNumber
       value: 1
       objectReference: {fileID: 0}
