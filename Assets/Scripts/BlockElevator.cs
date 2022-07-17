@@ -64,6 +64,11 @@ public class BlockElevator : Block
                 passenger.transform.position = toPosition + Vector3.up;
                 passenger.UpdatePosition();
             }
+
+            if (CubeController.Instance.GetBlockAtPosition(Position) is Cube cube)
+            {
+                cube.Die();
+            }
         }
     }
 

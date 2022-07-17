@@ -105,7 +105,7 @@ public class Cube : Block
         }
     }
 
-    void Die()
+    public void Die()
     {
         CubeController.Instance.Restart();
         Instantiate(CubeController.Instance.DeathPrefab, transform.position, Quaternion.identity);
