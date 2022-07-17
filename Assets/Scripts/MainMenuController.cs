@@ -7,6 +7,7 @@ public class MainMenuController : MonoBehaviour
 {
     public LevelButton[] row1;
     public LevelButton[] row2;
+    public LevelButton[] row3;
 
     Vector2Int selection = new Vector2Int(0, 0);
 
@@ -30,10 +31,6 @@ public class MainMenuController : MonoBehaviour
         {
             return;
         }
-        else
-        {
-            Debug.Log($"x: {value.x}, y: {value.y}");
-        }
 
         GetButton().SetSelected(false);
 
@@ -52,11 +49,11 @@ public class MainMenuController : MonoBehaviour
         {
             if (value.y > 0.0f)
             {
-                selection = new Vector2Int(selection.x, (selection.y + 1) % 2);
+                selection = new Vector2Int(selection.x, (selection.y + 2) % 3);
             }
             else if (value.y < 0.0f)
             {
-                selection = new Vector2Int(selection.x, (selection.y + 1) % 2);
+                selection = new Vector2Int(selection.x, (selection.y + 1) % 3);
             }
         }
 
@@ -67,7 +64,13 @@ public class MainMenuController : MonoBehaviour
 
     LevelButton GetButton()
     {
-        return selection.y == 0 ? row1[selection.x] : row2[selection.x];
+        return selection.y switch
+        {
+            0 => row1[selection.x],
+            1 => row2[selection.x],
+            2 => row3[selection.x],
+            _ => null,
+        };
     }
 
     public void Select(InputAction.CallbackContext context)
