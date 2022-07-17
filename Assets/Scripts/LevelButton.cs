@@ -12,7 +12,7 @@ public class LevelButton : MonoBehaviour, IPointerDownHandler
     public Image Selection;
     [Space]
     public int index;
-    public Object TargetLevel;
+    public string TargetLevel;
 
     public static bool transitioning = false;
 
@@ -51,9 +51,9 @@ public class LevelButton : MonoBehaviour, IPointerDownHandler
         {
             transitioning = true;
             AudioManager.PlayClip(AudioManager.Instance.ClickSound);
-            Debug.Log(FadeController.Instance);
-            Debug.Log(TargetLevel.name);
-            FadeController.Instance.EndFade(TargetLevel.name);
+            Debug.Log("Instance: " + FadeController.Instance);
+            Debug.Log("Level name: " + TargetLevel);
+            FadeController.Instance.EndFade(TargetLevel);
         }
     }
 

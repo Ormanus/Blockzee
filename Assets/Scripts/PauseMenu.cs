@@ -23,11 +23,8 @@ public class PauseMenu : MonoBehaviour
         buttons[0].Select();
     }
 
-    public void TogglePause(InputAction.CallbackContext context)
+    public void TogglePause()
     {
-        if (context.phase != InputActionPhase.Started)
-            return;
-
         Debug.Log("Toggle!");
 
         paused = !paused;
@@ -37,6 +34,14 @@ public class PauseMenu : MonoBehaviour
             Input.currentActionMap = Input.actions.FindActionMap("Cube");
 
         PauseCanvas.SetActive(paused);
+    }
+
+    public void TogglePause(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Started)
+            return;
+
+        TogglePause();
     }
 
     public void Control(InputAction.CallbackContext context)

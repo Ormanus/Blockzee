@@ -38,5 +38,5 @@ public class Level : MonoBehaviour
 
     [Header("Level numbers start from 0!")]
     public int levelNumber;
-    public Object NextLevel;
+    public string NextLevel;
 }

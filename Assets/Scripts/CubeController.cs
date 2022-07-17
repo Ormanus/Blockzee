@@ -116,7 +116,7 @@ public class CubeController : MonoBehaviour
             cube.Win(id++);
         }
 
-        StartCoroutine(PrepareSceneTransition(Level.Instance.NextLevel.name, 2));
+        StartCoroutine(PrepareSceneTransition(Level.Instance.NextLevel, 2));
 
         SaveSystem.SetLevelState(Level.Instance.levelNumber, yahtzee ? 2 : 1);
     }

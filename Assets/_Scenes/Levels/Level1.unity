@@ -13482,8 +13482,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1215557410196812011, guid: 573628a0d5653a54caef9918ca97da9f, type: 3}
       propertyPath: NextLevel
-      value: 
-      objectReference: {fileID: 102900000, guid: 8f37ff9df0f30b24fbf389813f0d6da8, type: 3}
+      value: Level2
+      objectReference: {fileID: 0}
     - target: {fileID: 1284679273967634488, guid: 573628a0d5653a54caef9918ca97da9f, type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 0
