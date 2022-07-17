@@ -12,6 +12,7 @@ public static class SaveSystem
     }
 
     const string key = "SaveData";
+    const int levelCount = 6;
 
     static SaveData _current = null;
     static SaveData CurrentSave
@@ -26,12 +27,21 @@ public static class SaveSystem
                     _current = new SaveData()
                     {
                         version = 0,
-                        unlocks = new int[5] // one for each level
+                        unlocks = new int[levelCount] // one for each level
                     };
                 }
                 else
                 {
                     _current = JsonUtility.FromJson<SaveData>(data);
+                    if (_current.unlocks.Length != levelCount)
+                    {
+                        int[] newUnlocks = new int[levelCount];
+                        for (int i = 0; i < newUnlocks.Length && i < _current.unlocks.Length; i++)
+                        {
+                            newUnlocks[i] = _current.unlocks[i];
+                        }
+                        _current.unlocks = newUnlocks;
+                    }
                 }
             }
             Debug.Log($"{_current} ({_current?.version}, {_current?.unlocks.Length})");

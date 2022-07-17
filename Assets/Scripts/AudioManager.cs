@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip DeathSound;
     public AudioClip SingleFinishSound;
     public AudioClip FullFinishSound;
+    public AudioClip ClickSound;
 
     public static AudioManager Instance;
     public AudioManager()

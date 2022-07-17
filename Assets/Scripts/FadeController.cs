@@ -34,7 +34,6 @@ public class FadeController : MonoBehaviour
         targetScene = scene.name;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (endFading)
