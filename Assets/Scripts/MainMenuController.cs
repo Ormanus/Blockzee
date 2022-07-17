@@ -78,4 +78,9 @@ public class MainMenuController : MonoBehaviour
 
         GetButton().StartLevel();
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

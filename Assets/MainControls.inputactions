@@ -323,6 +323,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "2683891e-4356-4e43-9c2a-d2a3f095b5e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select",
                     "type": "Button",
                     "id": "0cbcf2cc-9d49-4bfb-93af-4d23c0425a53",
@@ -484,6 +493,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3bc8c12c-369f-4847-9160-8b863a027878",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c36ff2e7-92f1-42e4-917b-7902509ccbbe",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
