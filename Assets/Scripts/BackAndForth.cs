@@ -96,6 +96,11 @@ public class BackAndForth : Block
                 passenger.transform.position = toPosition + Vector3.up * passengerCount2++;
                 passenger.UpdatePosition();
             }
+
+            if (CubeController.Instance.GetBlockAtPosition(Position) is Cube cube)
+            {
+                cube.Die();
+            }
         }
     }
 
