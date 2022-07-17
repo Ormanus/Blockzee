@@ -7350,6 +7350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelCommon
       objectReference: {fileID: 0}
+    - target: {fileID: 1215557410196812011, guid: 573628a0d5653a54caef9918ca97da9f, type: 3}
+      propertyPath: levelNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2889115074656931953, guid: 573628a0d5653a54caef9918ca97da9f, type: 3}
       propertyPath: m_RootOrder
       value: 6

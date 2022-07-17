@@ -35,5 +35,7 @@ public class Level : MonoBehaviour
     [HideInInspector]
     public BlockFinish[] finishBlocks;
 
+    [Header("Level numbers start from 0!")]
+    public int levelNumber;
     public Object NextLevel;
 }

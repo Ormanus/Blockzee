@@ -109,6 +109,9 @@ public class CubeController : MonoBehaviour
         }
 
         StartCoroutine(PrepareSceneTransition());
+
+        // TODO: check if Yahtzee
+        SaveSystem.SetLevelState(Level.Instance.levelNumber, 1);
     }
 
     public Block GetBlockAtPosition(Vector3Int position)
