@@ -12,7 +12,7 @@ public static class SaveSystem
     }
 
     const string key = "SaveData";
-    const int levelCount = 6;
+    const int levelCount = 9;
 
     static SaveData _current = null;
     static SaveData CurrentSave
