@@ -12,6 +12,5 @@ public class BlockElevator : BackAndForth
     public override void OnBlockExit(Cube cube)
     {
         MoveDown();
-
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackAndForth : Block
+public class BackAndForth : Undoable
 {
     public Vector3Int UpPosition;
 
@@ -45,11 +45,15 @@ public class BackAndForth : Block
         if (Position == UpPosition)
             return;
 
+        ResetPassengers();
+
+        if (passengers.Count == 0)
+            return;
+
         CubeController.BlockAnimating = true;
         animating = true;
         movingUp = true;
 
-        ResetPassengers();
 
         animationStartTime = Time.time;
     }
@@ -59,11 +63,15 @@ public class BackAndForth : Block
         if (Position == DownPosition)
             return;
 
+        ResetPassengers();
+
+        if (passengers.Count > 0)
+            return;
+
         CubeController.BlockAnimating = true;
         animating = true;
         movingUp = false;
 
-        ResetPassengers();
 
         animationStartTime = Time.time;
     }
@@ -109,5 +117,30 @@ public class BackAndForth : Block
     {
         if (animating)
             MoveElevator();
+    }
+
+    public override void Do(int move)
+    {
+        _actions.Push(new UndoableAction()
+        {
+            data = new int[] { Position.x, Position.y, Position.z },
+            move = move,
+        });
+    }
+
+    public override void Undo(int move)
+    {
+        if (_actions.Count == 0)
+            return;
+        if (_actions.Peek().move == move)
+        {
+            animating = false;
+            movingUp = false;
+            CubeController.BlockAnimating = false;
+            gameObject.SetActive(true);
+            int[] d = _actions.Pop().data;
+            Position = new Vector3Int(d[0], d[1], d[2]);
+            transform.position = Position;
+        }
     }
 }

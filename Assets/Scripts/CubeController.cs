@@ -27,6 +27,10 @@ public class CubeController : MonoBehaviour
     [HideInInspector]
     public Cube[] Cubes;
     public GameObject DeathPrefab;
+    public GameObject EndRoot;
+    public UndoManager undoManager;
+    public CameraRotation camRot;
+    public PlayerInput input;
 
     private void Awake()
     {
@@ -38,6 +42,8 @@ public class CubeController : MonoBehaviour
         Winning = false;
         Cubes = FindObjectsOfType<Cube>();
         Cubes = Cubes.OrderBy(x => x.diceId).ToArray();
+
+        EndRoot.SetActive(false);
 
         if (Cubes.Length > 0)
             Selected = Cubes[0];
@@ -56,10 +62,17 @@ public class CubeController : MonoBehaviour
     {
         if (AllowInput)
         {
+            // Apply camera rotation
+            int dir = (int)direction;
+            dir = (dir + Mathf.RoundToInt(-camRot.Angle / 90 + 4)) % 4;
+            direction = (Direction)dir;
+
+            // Check for collisions
             if (!GetBlockAtPosition(NextPosition(Selected.Position, direction)) && 
                 !GetBlockAtPosition(Selected.Position + Vector3Int.up) && 
                 !GetBlockAtPosition(NextPosition(Selected.Position, direction) + Vector3Int.up))
             {
+                undoManager.Do();
                 Selected.Move(direction);
             }
         }
@@ -82,10 +95,22 @@ public class CubeController : MonoBehaviour
         Selected = Cubes[index];
     }
 
-
     public void Restart()
     {
         StartCoroutine(PrepareSceneTransition(SceneManager.GetActiveScene().name, 1));
+    }
+
+    public void PromptRestart()
+    {
+        EndRoot.SetActive(true);
+        input.currentActionMap = input.actions.FindActionMap("Menu");
+    }
+
+    public void Undo()
+    {
+        EndRoot.SetActive(false);
+        input.currentActionMap = input.actions.FindActionMap("Menu");
+        undoManager.Undo();
     }
 
     public static Vector3Int NextPosition(Vector3Int position, Direction direction)

@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         PauseCanvas.SetActive(paused);
-        buttons[0].Select();
+        //buttons[0].Select();
     }
 
     public void TogglePause()

@@ -49,7 +49,7 @@ public class FollowCubes : MonoBehaviour
 
         targetPosition = new Vector3(centerX, centerY, centerZ) - Camera.main.transform.forward * (dist / 1.4f + 10);
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         UpdateTargetPosition();
@@ -57,7 +57,7 @@ public class FollowCubes : MonoBehaviour
     }
 
     bool started = false;
-    // Update is called once per frame
+
     void Update()
     {
         if (!started)

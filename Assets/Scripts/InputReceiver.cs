@@ -6,6 +6,16 @@ using UnityEngine.InputSystem;
 public class InputReceiver : MonoBehaviour
 {
     public CubeController cubeController;
+    public CameraRotation cameraRotation;
+    public InputActionAsset inputActionAsset;
+
+    InputAction _rotationAction;
+
+    private void Awake()
+    {
+        var cube = inputActionAsset.FindActionMap("Cube");
+        _rotationAction = cube.FindAction("RotateCamera");
+    }
 
     public void OnMovementInput(InputAction.CallbackContext context)
     {
@@ -54,5 +64,12 @@ public class InputReceiver : MonoBehaviour
         {
             cubeController.SelectCube(int.Parse(context.control.name) - 1);
         }
+    }
+
+    private void Update()
+    {
+        
+        float value = _rotationAction.ReadValue<float>();
+        cameraRotation.Rotate(value);
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockFalling : Block
+public class BlockFalling : Undoable
 {
     Vector3 originalPosition;
     const float Gravity = 20;
@@ -28,6 +28,29 @@ public class BlockFalling : Block
                 falling = false;
                 gameObject.SetActive(false);
             }
+        }
+    }
+
+    public override void Do(int move)
+    {
+        _actions.Push(new UndoableAction()
+        {
+            data = new int[] { Position.x, Position.y, Position.z },
+            move = move,
+        });
+    }
+
+    public override void Undo(int move)
+    {
+        if (_actions.Count == 0)
+            return;
+        if (_actions.Peek().move == move)
+        {
+            falling = false;
+            gameObject.SetActive(true);
+            int[] d = _actions.Pop().data;
+            Position = new Vector3Int(d[0], d[1], d[2]);
+            transform.position = Position;
         }
     }
 }

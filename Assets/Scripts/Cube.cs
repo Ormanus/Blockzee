@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : Block
+public class Cube : Undoable
 {
     public Color color;
     public int diceId;
@@ -107,16 +107,20 @@ public class Cube : Block
 
     public void Die()
     {
-        CubeController.Instance.Restart();
+        CubeController.Instance.PromptRestart();
         Instantiate(CubeController.Instance.DeathPrefab, transform.position, Quaternion.identity);
         AudioManager.PlayClip(AudioManager.Instance.DeathSound);
 
         foreach (Face face in GetComponentsInChildren<Face>())
         {
-            face.transform.parent = transform.parent;
-            Rigidbody rb = face.gameObject.AddComponent<Rigidbody>();
+            var tr = face.transform;
+            var f = Instantiate(face.gameObject, tr.position, tr.rotation, null);
+            var fade = f.AddComponent<ObjectFade>();
+            fade.fadeTime = 3f;
+            fade.destroy = true;
+            Rigidbody rb = f.AddComponent<Rigidbody>();
             rb.useGravity = false;
-            rb.velocity = face.transform.up * 2;
+            rb.velocity = f.transform.up * 2;
         }
 
         gameObject.SetActive(false);
@@ -265,5 +269,40 @@ public class Cube : Block
         }
 
         targetRotation =  Quaternion.Euler(axis * amount) * transform.rotation;
+    }
+
+    public override void Do(int move)
+    {
+        _actions.Push(new UndoableAction()
+        {
+            data = new int[] {
+                Position.x, Position.y, Position.z, 
+                Mathf.RoundToInt(transform.eulerAngles.x), Mathf.RoundToInt(transform.eulerAngles.y), Mathf.RoundToInt(transform.eulerAngles.z)
+            },
+            move = move,
+        });
+    }
+
+    public override void Undo(int move)
+    {
+        //Debug.Log($"Undoing! ac: {_actions.Count} move: {move} peek: {_actions.Peek().move}");
+        if (_actions.Count == 0)
+            return;
+        if (_actions.Peek().move == move)
+        {
+            falling = false;
+            animating = false;
+            CubeController.CubeAnimating = false;
+            gameObject.SetActive(true);
+            int[] d = _actions.Pop().data;
+            Vector3Int pos = new Vector3Int(d[0], d[1], d[2]);
+            Vector3Int rot = new Vector3Int(d[3], d[4], d[5]);
+            //Debug.Log("Pos 1: " + Position);
+            Position = pos;
+            transform.position = Position;
+            transform.eulerAngles = rot;
+            ChangeBlock();
+            //Debug.Log("Pos 2: " + Position);
+        }
     }
 }
